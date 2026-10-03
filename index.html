@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ПИОН &mdash; салон красоты в Москве, онлайн-запись</title>
+<meta name="description" content="Салон красоты ПИОН: стрижки и окрашивание, маникюр и педикюр, брови, ресницы и уход. Соберите визит из нескольких услуг и запишитесь онлайн на удобное время.">
+<meta name="theme-color" content="#F7EFEA">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#top">пион<span>салон красоты</span></a>
+  <nav class="menu">
+    <a href="#visit">Запись</a>
+    <a href="#masters">Мастера</a>
+    <a href="#works">Работы</a>
+    <a href="#gift">Сертификат</a>
+  </nav>
+  <a class="btn btn-rose btn-sm" href="#visit">Записаться</a>
+</header>
+
+<!-- ПЕРВЫЙ ЭКРАН -->
+<section class="hero" id="top">
+  <div class="hero-text wrap">
+    <span class="tag reveal">Москва, Патриаршие · ежедневно 10:00–21:00</span>
+    <h1 class="reveal">Время, которое<br>вы проводите <em>для себя</em></h1>
+    <p class="reveal">Волосы, ногти, брови и уход в одном месте. Соберите визит из нескольких услуг —
+      подберем время, чтобы все сделать за один приход.</p>
+    <div class="hero-act reveal">
+      <a class="btn btn-rose" href="#visit">Собрать визит</a>
+      <a class="btn btn-line" href="#gift">Подарить сертификат</a>
+    </div>
+  </div>
+  <figure class="hero-photo reveal">
+    <img src="assets/hero.jpg" alt="Интерьер салона в пудровых тонах с круглыми зеркалами" fetchpriority="high">
+  </figure>
+</section>
+
+<!-- НАПРАВЛЕНИЯ -->
+<section class="section cats-sec">
+  <div class="wrap cats" id="catCards"></div>
+</section>
+
+<!-- СОБРАТЬ ВИЗИТ -->
+<section class="section visit-sec" id="visit">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker reveal">Онлайн-запись</span>
+      <h2 class="reveal">Соберите свой визит</h2>
+      <p class="reveal">Отметьте одну или несколько услуг и выберите уровень мастера —
+        мы посчитаем время и стоимость и покажем окна, в которые поместится весь визит.</p>
+    </div>
+
+    <div class="visit reveal">
+      <div class="visit-main">
+        <div class="step">
+          <p class="step-title"><span>1</span>Услуги</p>
+          <div class="svc-tabs" id="svcTabs" role="tablist"></div>
+          <div class="svc-list" id="svcList"></div>
+        </div>
+        <div class="step">
+          <p class="step-title"><span>2</span>Уровень мастера</p>
+          <div class="levels" id="levels" role="radiogroup" aria-label="Уровень мастера"></div>
+        </div>
+        <div class="step">
+          <p class="step-title"><span>3</span>Дата и время</p>
+          <div class="days" id="days" role="radiogroup" aria-label="Дата"></div>
+          <div class="times" id="times" role="radiogroup" aria-label="Время"></div>
+          <p class="times-note" id="timesNote"></p>
+        </div>
+      </div>
+
+      <aside class="visit-sum" aria-live="polite">
+        <h3>Ваш визит</h3>
+        <ul class="sum-lines" id="sumLines"><li class="empty">Выберите хотя бы одну услугу</li></ul>
+        <dl class="sum-list">
+          <div><dt>Мастер</dt><dd id="sumLevel">—</dd></div>
+          <div><dt>Длительность</dt><dd id="sumDur">—</dd></div>
+          <div><dt>Когда</dt><dd id="sumWhen">—</dd></div>
+        </dl>
+        <p class="sum-total"><span>Итого</span><b id="sumTotal">0 ₽</b></p>
+        <form class="visit-form" id="visitForm" novalidate>
+          <label class="field"><span>Имя</span><input type="text" id="name" placeholder="Анна" autocomplete="name"></label>
+          <label class="field"><span>Телефон</span><input type="tel" id="phone" placeholder="+7 900 000-00-00" autocomplete="tel"></label>
+          <label class="check"><input type="checkbox" id="agree"><span>Согласна(-ен) на обработку персональных данных</span></label>
+          <button class="btn btn-rose btn-wide" type="submit" id="visitSubmit" disabled>Записаться</button>
+          <p class="ok" id="visitOk" hidden></p>
+        </form>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- МАСТЕРА -->
+<section class="section" id="masters">
+  <div class="wrap">
+    <div class="head"><span class="kicker reveal">Мастера</span>
+      <h2 class="reveal">Люди, к которым возвращаются</h2></div>
+    <div class="masters" id="mastersList"></div>
+  </div>
+</section>
+
+<!-- РАБОТЫ -->
+<section class="section works-sec" id="works">
+  <div class="wrap">
+    <div class="head-row">
+      <div class="head"><span class="kicker reveal">Работы</span><h2 class="reveal">Из нашего портфолио</h2></div>
+      <div class="filter reveal" id="worksFilter">
+        <button type="button" class="on" data-cat="">Все</button>
+        <button type="button" data-cat="hair">Волосы</button>
+        <button type="button" data-cat="nails">Ногти</button>
+        <button type="button" data-cat="face">Брови и уход</button>
+      </div>
+    </div>
+    <div class="works" id="worksGrid">
+      <figure class="work tall" data-cat="hair"><img src="assets/hair.jpg" alt="Длинные волосы с мягкими волнами после укладки" loading="lazy"><figcaption>Укладка, мягкие волны</figcaption></figure>
+      <figure class="work" data-cat="nails"><img src="assets/g3.jpg" alt="Бордовый маникюр на коротких ногтях" loading="lazy"><figcaption>Бордовый маникюр</figcaption></figure>
+      <figure class="work" data-cat="hair"><img src="assets/g1.jpg" alt="Балаяж на светлых волосах" loading="lazy"><figcaption>Балаяж</figcaption></figure>
+      <figure class="work tall" data-cat="nails"><img src="assets/nails.jpg" alt="Нюдовый маникюр и пион в руках" loading="lazy"><figcaption>Нюдовый маникюр</figcaption></figure>
+      <figure class="work" data-cat="face"><img src="assets/brows.jpg" alt="Оформленные брови и ламинированные ресницы" loading="lazy"><figcaption>Брови и ламинирование</figcaption></figure>
+      <figure class="work" data-cat="hair"><img src="assets/g2.jpg" alt="Короткая стрижка пикси" loading="lazy"><figcaption>Стрижка пикси</figcaption></figure>
+      <figure class="work" data-cat="nails"><img src="assets/g4.jpg" alt="Молочный френч с золотой линией" loading="lazy"><figcaption>Молочный френч</figcaption></figure>
+      <figure class="work tall" data-cat="face"><img src="assets/care.jpg" alt="Уходовая процедура для лица" loading="lazy"><figcaption>Уход для лица</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- СЕРТИФИКАТ -->
+<section class="section gift-sec" id="gift">
+  <div class="wrap gift-grid">
+    <div>
+      <span class="kicker reveal">Подарочный сертификат</span>
+      <h2 class="reveal">Подарок, который точно пригодится</h2>
+      <p class="reveal">Сертификат на любую сумму действует год на все услуги салона. Пришлем красивую
+        электронную версию или подготовим печатную в конверте.</p>
+      <form class="gift-form reveal" id="giftForm" novalidate>
+        <div class="amounts" id="amounts"></div>
+        <label class="field"><span>Своя сумма</span><input type="number" id="giftCustom" min="1000" max="100000" step="500" placeholder="от 1 000 ₽"></label>
+        <div class="row2">
+          <label class="field"><span>Кому</span><input type="text" id="giftTo" maxlength="24" placeholder="Маме"></label>
+          <label class="field"><span>От кого</span><input type="text" id="giftFrom" maxlength="24" placeholder="Аня"></label>
+        </div>
+        <label class="field"><span>Ваш телефон</span><input type="tel" id="giftPhone" placeholder="+7 900 000-00-00" autocomplete="tel"></label>
+        <button class="btn btn-rose" type="submit">Оформить сертификат</button>
+        <p class="ok" id="giftOk" hidden></p>
+      </form>
+    </div>
+    <div class="cert-wrap reveal">
+      <div class="cert" id="cert">
+        <span class="cert-logo">пион</span>
+        <span class="cert-label">Подарочный сертификат</span>
+        <b class="cert-sum" id="certSum">5 000 ₽</b>
+        <span class="cert-to" id="certTo">Для особенного человека</span>
+        <span class="cert-from" id="certFrom"></span>
+        <span class="cert-term">Действует 12 месяцев на все услуги</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ОТЗЫВЫ -->
+<section class="section" id="reviews">
+  <div class="wrap">
+    <div class="head"><span class="kicker reveal">Отзывы</span><h2 class="reveal">Гости о нас</h2></div>
+    <div class="reviews">
+      <blockquote class="review reveal"><p>«Записалась сразу на окрашивание и маникюр — все сделали параллельно, за три часа вышла другим человеком».</p><cite>Вероника</cite></blockquote>
+      <blockquote class="review reveal"><p>«Алина не стала уговаривать на дорогую процедуру, честно сказала, что моим волосам хватит ухода. Теперь только к ней».</p><cite>Екатерина</cite></blockquote>
+      <blockquote class="review reveal"><p>«Дарил жене сертификат — оформил на сайте за две минуты, она была в восторге и от конверта, и от салона».</p><cite>Михаил</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ВОПРОСЫ -->
+<section class="section faq-sec" id="faq">
+  <div class="wrap faq-grid">
+    <div class="head"><span class="kicker reveal">Вопросы</span><h2 class="reveal">Частые вопросы</h2></div>
+    <div class="faq">
+      <details class="reveal"><summary>Чем отличаются уровни мастеров?</summary>
+        <p>Опытом и сложностью работ. Для стрижки или маникюра хватит мастера, для сложного окрашивания
+          советуем топ-мастера или арт-директора.</p></details>
+      <details class="reveal"><summary>Можно ли сделать несколько услуг одновременно?</summary>
+        <p>Да, например окрашивание и маникюр — работают два мастера параллельно. Администратор
+          уточнит это при подтверждении записи.</p></details>
+      <details class="reveal"><summary>Как перенести или отменить запись?</summary>
+        <p>Позвоните или напишите не позднее чем за 6 часов до визита — перенесем без штрафа.</p></details>
+      <details class="reveal"><summary>Какие материалы вы используете?</summary>
+        <p>Профессиональные бренды для волос и ногтей, одноразовые пилки и стерильные инструменты из крафт-пакета.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot-row">
+    <span>ПИОН — салон красоты · +7 495 000-00-00</span>
+    <span class="demo">Демонстрационный сайт. Салон и мастера вымышлены, цены условные, фотографии сгенерированы.</span>
+    <a href="https://t.me/VladisavSSS" target="_blank" rel="noopener">Сделал сайт: @VladisavSSS</a>
+  </div>
+</footer>
+
+<a class="call-fab" href="#visit">Собрать визит</a>
+
+<script src="js/salon.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
